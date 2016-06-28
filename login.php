@@ -1,7 +1,7 @@
 <?php
 session_start();
 $link = mysqli_connect("localhost", "root", "", "test")
-or die("tot");
+or die("SQL Connector couldnt connect");
 ?>
 <!DOCTYPE html>
 <html>
