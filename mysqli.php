@@ -50,9 +50,9 @@ if(isset($_GET['register'])) {
 	//Keine Fehler, wir können den Nutzer registrieren
 	if(!$error) {
     //TODO:Passwort ohne Hash/Salt speichern, nur zum testen//
-		//$passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);//
+		$passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);//
 
-		$statement = mysqli_query($link, "INSERT INTO users (email, passwort) VALUES ('".$email."', '".$passwort."')");
+		$statement = mysqli_query($link, "INSERT INTO users (email, passwort) VALUES ('".$email."', '".$passwort_hash."')");
 
 		if($statement) {
 			echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';

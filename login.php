@@ -21,7 +21,8 @@ if(isset($_GET['login'])) {
 
     if($usermail == $email)
       {
-        if($passwort == $result['passwort'])
+        if(password_verify($passwort, $result['passwort']))
+        //if($passwort == $result['passwort'])
         {
             $_SESSION['userid'] = $result['id'];
             die('Login erfolgreich. Weiter zu <a href="backend.php">internen Bereich</a>');

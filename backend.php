@@ -9,4 +9,5 @@ $userid = $_SESSION['userid'];
 
 echo "Hallo User: ".$userid;
 ?>
+<br />
 <a href="logout.php">Logout<a>
