@@ -26,9 +26,36 @@ function random_string()
     return $str;
 }
 
-if(isset($_GET['send'])){
+if(isset($_GET['send']))
+{
+    if(!isset($_POST['email']) || empty($_POST['email']))
+    {
+        
+    }
+    else 
+    {
+        $statement = mysqli_query($link, "SELECT * FROM users WHERE email = '".$email."'");
+        $result = mysqli_fetch_assoc($statement);
+        $usermail = $result["email"];
+        if($usermail === false)
+        {
+            $error = "<b>Kein User gefunden</b>";
+        }
+            else
+            {
+                $passwortcode = random_string();
+                $statement = mysqli_query($link, "UPDATE users SET passwortcode = '".$passwortcode."', passwortcode_time = NOW() WHERE id= '".$userid."'");
+                $result = mysqli_fetch_assoc($statement);
+                $usermail = $result["email"];
 
-    
+
+                $Empfänger = $result['email'];
+                $betreff = "neues PW für website";
+                $from = "von mir";
+                
+            }
+    }
+
 }
 
 $showForm = true;
