@@ -47,4 +47,5 @@ Dein Passwort:<br>
 <input type="password" size="40"  maxlength="250" name="passwort"><br>
 
 <input type="submit" value="Anmelden">
+  <a href="recovery.php">Passwort-Recovery</a>
 </form>
