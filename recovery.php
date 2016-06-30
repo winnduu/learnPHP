@@ -49,10 +49,24 @@ if(isset($_GET['send']))
                 $usermail = $result["email"];
 
 
-                $Empfänger = $result['email'];
+                $empfaenger = $result['email'];
                 $betreff = "neues PW für website";
                 $from = "von mir";
-                
+                $url_passwortcode = 'http://localhost/passwordrecovery.php?userid='.$result['id'].'&code='.$passwortcode;
+                $text = 'Hallo '.$result['vorname'].',
+                    für deinen Account auf www.php-einfach.de wurde nach einem neuen Passwort gefragt. Um ein neues Passwort zu vergeben, rufe innerhalb der nächsten 24 Stunden die folgende Website auf:
+                    '.$url_passwortcode.'
+
+                    Sollte dir dein Passwort wieder eingefallen sein oder hast du dies nicht angefordert, so bitte ignoriere diese E-Mail.
+ 
+                    Viele Grüße,
+                    dein RZ-Team';
+
+                    mail($empfaenger, $betreff, $text, $from);
+ 
+			echo "Ein Link um dein Passwort zurückzusetzen wurde an deine E-Mail-Adresse gesendet.";
+			$showForm = false;
+			
             }
     }
 
