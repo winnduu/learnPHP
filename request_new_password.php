@@ -37,10 +37,11 @@ if(isset($_GET['send'])) {
 
     if($passwort != $passwort2) {
         echo "Passwords didn't match";
-    } else { //Speichere neues Passwort und lösche den Code //TODO: Umbauen auf MSQLI
+    } else { //Speichere neues Passwort und lösche den Code
 
         $passworthash = password_hash($passwort, PASSWORD_DEFAULT);
         $statement = mysqli_query($link, "UPDATE users SET passwort = '".$passworthash."', passwortcode = NULL, passwortcode_time = NULL WHERE id = '".$userid."'");
+        //TODO: Anscheinend kommt kein TRUE zurück... Queri updated das Passwort, PHP sagt aber es hat nicht geklappt.
         $result = mysqli_fetch_assoc($statement);
         if($result) {
             die("Password_Recovery successfull!");
