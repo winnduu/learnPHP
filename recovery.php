@@ -34,6 +34,7 @@ if(isset($_GET['send']))
     }
     else 
     {
+        $email = $_POST['email'];
         $statement = mysqli_query($link, "SELECT * FROM users WHERE email = '".$email."'");
         $result = mysqli_fetch_assoc($statement);
         $usermail = $result["email"];
@@ -43,9 +44,11 @@ if(isset($_GET['send']))
         }
             else
             {
+                $userid = $result['id'];
                 $passwortcode = random_string();
                 $statement = mysqli_query($link, "UPDATE users SET passwortcode = '".$passwortcode."', passwortcode_time = NOW() WHERE id= '".$userid."'");
-                $result = mysqli_fetch_assoc($statement);
+               //$result = $statement->execute(array('passwortcode' => sha1($passwortcode), 'userid' => $user['id']));
+                //$result = mysqli_fetch_assoc($statement);
                 $usermail = $result["email"];
 
 
