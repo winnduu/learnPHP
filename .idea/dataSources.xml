@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1544985394">
+  <component name="DataSourceManagerImpl" format="xml" hash="1746771257">
     <data-source source="LOCAL" name="MySQL - test@localhost" uuid="e18e562f-51b6-4d21-a0df-0bb604de14e6">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
