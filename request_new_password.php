@@ -1,6 +1,7 @@
 <?php
 session_start();
-$link = new mysqli_connect("localhost", "root", "", "test");
+$link = mysqli_connect("localhost", "root", "mysql", "test")
+or die("No connection to Databse!");
 
 if(!isset($_GET['userid']) || !isset($_GET['code'])) {
     die("No RecoveryKey found in the Databse");
@@ -25,7 +26,7 @@ if($user['passwortcode_time'] === null || strtotime($user['passwortcode_time']) 
 
 
 //Überprüung des übergebenen RecoveryCodes
-if(sha1($code) != $user['passwortcode']) {
+if($code != $user['passwortcode']) {
     die("Used RecoveryKey was wrong.");
 }
 
@@ -39,13 +40,14 @@ if(isset($_GET['send'])) {
     } else { //Speichere neues Passwort und lösche den Code //TODO: Umbauen auf MSQLI
 
         $passworthash = password_hash($passwort, PASSWORD_DEFAULT);
-        $statement = mysqli_query($link, "UPDATE users SET passwort = :passworthash, passwortcode = NULL, passwortcode_time = NULL WHERE id = :userid");
+        $statement = mysqli_query($link, "UPDATE users SET passwort = '".$passworthash."', passwortcode = NULL, passwortcode_time = NULL WHERE id = '".$userid."'");
         $result = mysqli_fetch_assoc($statement);
-        //$statement = $pdo->prepare("UPDATE users SET passwort = :passworthash, passwortcode = NULL, passwortcode_time = NULL WHERE id = :userid");
-        //$result = $statement->execute(array('passworthash' => $passworthash, 'userid'=> $userid ));
-
         if($result) {
             die("Password_Recovery successfull!");
+        }
+        else
+        {
+            echo "Recovery failed due to unknown reasons.";
         }
     }
 }

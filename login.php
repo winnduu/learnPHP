@@ -1,6 +1,6 @@
 <?php
 session_start();
-$link = mysqli_connect("localhost", "root", "", "test")
+$link = mysqli_connect("localhost", "root", "mysql", "test")
 or die("SQL Connector couldnt connect");
 ?>
 <!DOCTYPE html>

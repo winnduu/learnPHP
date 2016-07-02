@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect("localhost", "root", "", "test")
+$link = mysqli_connect("localhost", "root", "mysql", "test")
 or die ("Datenbankanbindung funktioniert nicht");
 
 function random_string()
@@ -55,7 +55,7 @@ if(isset($_GET['send']))
                 $empfaenger = $result['email'];
                 $betreff = "neues PW für website";
                 $from = "von mir";
-                $url_passwortcode = 'http://localhost/request_new_password.php?userid='.$result['id'].'&code='.$passwortcode;
+                $url_passwortcode = 'http://localhost/learnPHP/request_new_password.php?userid='.$result['id'].'&code='.$passwortcode;
                 $text = 'Hallo '.$result['vorname'].',
                     für deinen Account auf www.php-einfach.de wurde nach einem neuen Passwort gefragt. Um ein neues Passwort zu vergeben, rufe innerhalb der nächsten 24 Stunden die folgende Website auf:
                     '.$url_passwortcode.'
