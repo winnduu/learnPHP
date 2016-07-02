@@ -68,6 +68,7 @@ if(isset($_GET['send']))
                     mail($empfaenger, $betreff, $text, $from);
  
 			echo "Ein Link um dein Passwort zurückzusetzen wurde an deine E-Mail-Adresse gesendet.";
+            echo $url_passwortcode;
 			$showForm = false;
 			
             }

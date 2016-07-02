@@ -35,11 +35,14 @@ if(isset($_GET['send'])) {
     $passwort2 = $_POST['passwort2'];
 
     if($passwort != $passwort2) {
-        echo "Passwords didn't Match";
+        echo "Passwords didn't match";
     } else { //Speichere neues Passwort und lösche den Code //TODO: Umbauen auf MSQLI
+
         $passworthash = password_hash($passwort, PASSWORD_DEFAULT);
-        $statement = $pdo->prepare("UPDATE users SET passwort = :passworthash, passwortcode = NULL, passwortcode_time = NULL WHERE id = :userid");
-        $result = $statement->execute(array('passworthash' => $passworthash, 'userid'=> $userid ));
+        $statement = mysqli_query($link, "UPDATE users SET passwort = :passworthash, passwortcode = NULL, passwortcode_time = NULL WHERE id = :userid");
+        $result = mysqli_fetch_assoc($statement);
+        //$statement = $pdo->prepare("UPDATE users SET passwort = :passworthash, passwortcode = NULL, passwortcode_time = NULL WHERE id = :userid");
+        //$result = $statement->execute(array('passworthash' => $passworthash, 'userid'=> $userid ));
 
         if($result) {
             die("Password_Recovery successfull!");
